@@ -1,0 +1,55 @@
+{
+    "common": {
+        "support_now": "Support Now",
+        "volunteer": "Volunteer",
+        "view_more": "View More",
+        "contact_us": "Contact Us",
+        "send_message": "Send Message",
+        "name": "Name",
+        "phone": "Phone",
+        "area": "Area",
+        "message": "Message",
+        "submit": "Submit",
+        "official_website": "Official Website of Adv. Anusha – T. Nagar Constituency",
+        "read_full_bio": "Read Full Bio",
+        "read_more": "Read More"
+    },
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "vision": "Vision",
+        "manifesto": "Manifesto",
+        "gallery": "Gallery",
+        "news": "News",
+        "contact": "Contact"
+    },
+    "home": {
+        "slogan": "Justice for Tamils – Progress for T. Nagar",
+        "constituency": "T. Nagar Constituency",
+        "party": "Naam Tamilar Katchi (NTK)",
+        "countdown_title": "Days to Election",
+        "vision_subtitle": "A progressive roadmap for T. Nagar constituency, focusing on sustainable development, safety, and empowerment.",
+        "cta_subtitle": "Join us for the change we deserve. Your support is our strength."
+    },
+    "about": {
+        "title": "About Adv. Anusha",
+        "education": "Education Background",
+        "education_desc": "Completed B.A. L.L.B (Hons) from prestigious law university, specialized in Constitutional Law.",
+        "legal_exp": "Legal Experience",
+        "legal_exp_desc": "10+ years of active practice in Madras High Court, advocating for human rights and common labor issues.",
+        "social_service": "Social Service",
+        "social_service_desc": "Actively involved in free legal aid for marginalized communities and fighting for social justice.",
+        "political_journey": "Political Journey",
+        "political_journey_desc": "Representing the noble goals of Naam Tamilar Katchi and Tamil National politics under the leadership of Seeman.",
+        "vision_tnagar": "Vision for T. Nagar",
+        "vision_tnagar_desc": "Committed to making T. Nagar a model constituency with world-class infrastructure and safety."
+    },
+    "vision": {
+        "title": "Our Vision & Mission",
+        "infra": "Infrastructure Development",
+        "safety": "Women Safety",
+        "youth": "Youth Employment",
+        "traders": "Small Trader Support",
+        "env": "Environmental Protection"
+    }
+}

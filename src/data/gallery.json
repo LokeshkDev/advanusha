@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "தாமரை திருமண மண்டப மக்கள் சந்திப்பு",
+        "image": "https://via.placeholder.com/800x600?text=Election+Meeting",
+        "category": "தேர்தல் பரப்புரை"
+    },
+    {
+        "id": 2,
+        "title": "உயர்நீதிமன்ற சட்டப்போராட்டம்",
+        "image": "https://via.placeholder.com/800x600?text=Legal+Work",
+        "category": "சட்டப்பணி"
+    },
+    {
+        "id": 3,
+        "title": "இளைஞர்களுடன் ஒரு கலந்துரையாடல்",
+        "image": "https://via.placeholder.com/800x600?text=Youth+Meeting",
+        "category": "நிகழ்வுகள்"
+    },
+    {
+        "id": 4,
+        "title": "தி.நகர் வீதி உலா - மக்கள் குறைகேட்பு",
+        "image": "https://via.placeholder.com/800x600?text=Door+to+Door",
+        "category": "தேர்தல் பரப்புரை"
+    },
+    {
+        "id": 5,
+        "title": "இலவச சட்ட ஆலோசனை முகாம்",
+        "image": "https://via.placeholder.com/800x600?text=Legal+Aid+Camp",
+        "category": "சமூக சேவை"
+    },
+    {
+        "id": 6,
+        "title": "நாம் தமிழர் கட்சி பொதுக்கூட்டம்",
+        "image": "https://via.placeholder.com/800x600?text=NTK+Meeting",
+        "category": "நிகழ்வுகள்"
+    }
+]
