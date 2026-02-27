@@ -36,7 +36,7 @@ const Dashboard = () => {
     });
     const [imageFile, setImageFile] = useState(null);
 
-    const API_BASE = 'http://localhost:5000/api';
+    const API_BASE = 'https://advanusha.in/api';
 
     useEffect(() => {
         // Auth check
