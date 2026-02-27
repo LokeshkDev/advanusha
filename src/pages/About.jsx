@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Scale, Heart, Milestone, Eye } from 'lucide-react';
 import Layout from '../components/Layout';
 import bannerImg from '../assets/common-banner.png';
+import heroPhoto from '../assets/advocate_hero_banner.png';
 
 const About = () => {
     const { t } = useTranslation();
@@ -50,9 +51,9 @@ const About = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="display-4 fw-black mb-3 tamil-text text-white"
                     >
-                        அட்வகேட் அனுஷா - சட்டப்போராளியும் மக்கள் சேவகரும்
+                        {t('about.banner_title')}
                     </motion.h1>
-                    <p className="fs-4 text-white-50">நீதிமன்றத்தில் சட்டம், நடுவீதியில் மக்கள் உரிமை - நாம் தமிழர் கட்சியின் வேட்பாளராக உங்கள் முன்னே!</p>
+                    <p className="fs-4 text-white-50">{t('about.banner_subtitle')}</p>
                 </div>
             </section>
 
@@ -66,17 +67,16 @@ const About = () => {
                             viewport={{ once: true }}
                             className="col-lg-6 position-relative"
                         >
-                            <div className="ratio ratio-4x5 rounded-4 shadow-lg overflow-hidden bg-light">
+                            <div className="position-relative z-1 p-3">
                                 <img
-                                    src="https://via.placeholder.com/600x750?text=Adv.+Anusha+Action"
+                                    src={heroPhoto}
                                     alt="Adv. Anusha"
-                                    className="w-100 h-100 object-fit-cover grayscale-filter hover-grayscale-off transition-700"
-                                    style={{ filter: 'grayscale(100%)' }}
+                                    className="img-fluid rounded-5 shadow-2xl transition-700 border border-5 border-white bg-white"
                                 />
                             </div>
                             <div className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center p-4 text-center text-primary fw-bold shadow-lg border border-5 border-white about-badge"
-                                style={{ width: '180px', height: '180px', right: '-40px', bottom: '-40px' }}>
-                                10+ Years of Legal Excellence
+                                style={{ width: '180px', height: '180px', right: '-40px', bottom: '-20px', zIndex: 2 }}>
+                                <span className="tamil-text">{t('about.badge_text')}</span>
                             </div>
                         </motion.div>
 
@@ -112,22 +112,22 @@ const About = () => {
                 <div className="container py-5">
                     <div className="row g-4">
                         <div className="col-12 text-center mb-5">
-                            <h2 className="display-5 fw-black tamil-text text-primary">பொதுவாழ்வும் அரசியல் கொள்கையும்</h2>
+                            <h2 className="display-5 fw-black tamil-text text-primary">{t('about.public_life_title')}</h2>
                             <div className="mx-auto bg-secondary mt-3" style={{ width: '80px', height: '4px' }}></div>
                         </div>
                         <div className="col-md-6">
                             <div className="p-4 bg-white rounded-4 shadow-sm h-100">
-                                <h3 className="h4 fw-bold text-primary mb-3 tamil-text">மக்களுக்கான பொதுவாழ்வு</h3>
+                                <h3 className="h4 fw-bold text-primary mb-3 tamil-text">{t('about.public_life_heading')}</h3>
                                 <p className="text-muted lh-lg mb-0 tamil-text">
-                                    சட்டம் என்பது வெறும் ஏட்டளவிலான வார்த்தைகள் அல்ல, அவை சாதாரண மனிதனின் வாழ்வாதாரத்தைப் பாதுகாக்கும் கருவி என்பதை நான் நம்புகிறேன். சமூகத்தின் விளிம்புநிலை மக்களுக்காகக் குரல் கொடுப்பது, பெண்களின் பாதுகாப்பை உறுதி செய்வது மற்றும் இளைஞர்களுக்குச் சரியான வழிகாட்டுதலை வழங்குவது ஆகியவையே எனது பொதுவாழ்வின் அடித்தளம்.
+                                    {t('about.public_life_desc')}
                                 </p>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="p-4 bg-white rounded-4 shadow-sm h-100">
-                                <h3 className="h4 fw-bold text-primary mb-3 tamil-text">நாம்தமிழர் கட்சியின் வேட்பாளராக...</h3>
+                                <h3 className="h4 fw-bold text-primary mb-3 tamil-text">{t('about.ntk_candidate_heading')}</h3>
                                 <p className="text-muted lh-lg mb-0 tamil-text">
-                                    தமிழ்த்தேசிய அரசியல் என்பது இனத்தின் உரிமை மீட்கும் அரசியல். அண்ணன் சீமானின் சீரிய கொள்கைகளால் ஈர்க்கப்பட்டு, இன்று நாம் தமிழர் கட்சியின் சார்பாக உங்கள் தொகுதி வேட்பாளராக நிற்கிறேன். நாம் தமிழர் கட்சியின் "விவசாயி" சின்னத்தில் போட்டியிடுவது என்பது எனது வாழ்வின் பெருமிதமான தருணம்.
+                                    {t('about.ntk_candidate_desc')}
                                 </p>
                             </div>
                         </div>
@@ -141,9 +141,9 @@ const About = () => {
                     <div className="mx-auto" style={{ maxWidth: '800px' }}>
                         <span className="display-1 fw-serif opacity-25 d-block" style={{ color: 'var(--secondary)', marginBottom: '-40px' }}>“</span>
                         <h2 className="display-6 fw-light fst-italic lh-base tamil-text">
-                            யாதும் ஊரே யாவரும் கேளிர் - தமிழரின் அறமே எமது அரசியல்!
+                            {t('about.quote')}
                         </h2>
-                        <p className="mt-5 fw-bold text-uppercase ls-widest" style={{ color: 'var(--secondary)' }}>The Ethics of Tamils is Our Politics</p>
+                        <p className="mt-5 fw-bold text-uppercase ls-widest" style={{ color: 'var(--secondary)' }}>{t('about.quote_english')}</p>
                     </div>
                 </div>
             </section>

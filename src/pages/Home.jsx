@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Users, Award, Briefcase, Scale } from 'lucide-react';
+import { ArrowRight, CheckCircle, Users, Award, Briefcase, Scale, Calendar } from 'lucide-react';
 import Layout from '../components/Layout';
 import heroBanner from '../assets/advocate_hero_banner.png';
 import anushaAbout from '../assets/anusha-about.png';
@@ -9,6 +10,15 @@ import visionBg from '../assets/vision-bg.png';
 
 const Home = () => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
+    const [news, setNews] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/api/news')
+            .then(res => res.json())
+            .then(data => setNews(data.slice(0, 3)))
+            .catch(err => console.error('Error fetching news:', err));
+    }, []);
 
     return (
         <Layout>
@@ -17,7 +27,7 @@ const Home = () => {
                 {/* Background Accents */}
                 <div className="position-absolute top-0 start-0 w-100 h-100 opacity-10 pointer-events-none">
                     <div className="position-absolute top-0 end-0 p-5">
-                        <Scale size={400} strokeWidth={0.5} className="text-primary rotate-12" />
+                        <Scale size={400} strokeWidth={0.5} className="text-primary rotate-12" aria-hidden="true" />
                     </div>
                 </div>
 
@@ -32,18 +42,17 @@ const Home = () => {
                                 className="pe-lg-5"
                             >
                                 <div className="d-flex align-items-center gap-2 mb-4 mt-home" style={{ marginTop: '9rem' }}>
-                                    <div className="h-px bg-primary" style={{ width: '40px' }}></div>
-                                    <span className="text-primary fw-bold text-uppercase ls-widest small tamil-text">சமூகப் போராளி • வழக்கறிஞர் • மக்கள் வேட்பாளர்</span>
+                                    <div className="h-px bg-primary"></div>
+                                    <span className="text-primary fw-bold text-uppercase ls-widest small tamil-text">{t('home.hero_tagline')}</span>
                                 </div>
 
                                 <h1 className="display-2 fw-black text-primary mb-4 tamil-text lh-1">
-                                    நீதிக்கானக் குரல், <br />
-                                    <span className="text-secondary">வளர்ச்சிக்கான மாற்றம்!</span>
+                                    {t('home.hero_title_1')} <br />
+                                    <span className="text-secondary">{t('home.hero_title_2')}</span>
                                 </h1>
 
                                 <p className="fs-4 text-black mb-5 tamil-text opacity-75">
-                                    நீதிமன்றத்தில் எளிய மக்களின் உரிமைகளுக்காக வாதாடும் சட்டம், <br />
-                                    இனி உங்கள் தொகுதியில் மாற்றத்தை விதைக்கும் கருவியாக!
+                                    {t('home.hero_desc')}
                                 </p>
                             </motion.div>
                         </div>
@@ -76,12 +85,12 @@ const Home = () => {
                                     {/* Floating stats card */}
                                     <div className="position-absolute bottom-0 start-0 m-4 bg-white p-3 rounded-4 shadow-xl border border-light">
                                         <div className="d-flex align-items-center gap-3">
-                                            <div className="bg-secondary bg-opacity-20 p-2 rounded-3 text-primary">
+                                            <div className="bg-secondary bg-opacity-20 p-2 rounded-3 text-primary" aria-hidden="true">
                                                 <Briefcase size={20} />
                                             </div>
                                             <div>
-                                                <p className="small fw-black text-primary mb-0">10+ Years</p>
-                                                <p className="text-black" style={{ fontSize: '0.6rem' }}>LEGAL PRACTICE</p>
+                                                <p className="small fw-black text-primary mb-0">{t('home.stats_years')}</p>
+                                                <p className="text-black tamil-text" style={{ fontSize: '0.6rem' }}>{t('home.stats_legal')}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -105,10 +114,10 @@ const Home = () => {
                 <div className="container py-5">
                     <div className="row align-items-center g-5">
                         <div className="col-lg-6">
-                            <h3 className="text-secondary fw-bold text-uppercase ls-widest mb-3 tamil-text">வேட்பாளர் அறிமுகம்</h3>
-                            <h2 className="display-5 fw-black text-primary mb-4 tamil-text">சமூகப் போராளி அட்வகேட் அனுஷா</h2>
+                            <h3 className="text-secondary fw-bold text-uppercase ls-widest mb-3 tamil-text">{t('home.candidate_intro')}</h3>
+                            <h2 className="display-5 fw-black text-primary mb-4 tamil-text">{t('home.candidate_name')}</h2>
                             <p className="fs-5 text-black mb-4 lh-lg tamil-text">
-                                கடந்த 10 ஆண்டுகளுக்கு மேலாக சென்னை உயர்நீதிமன்றத்தில் வழக்கறிஞராக பணியாற்றி வரும் நான், எளிய மக்களின் உரிமைகளுக்காகத் தொடர்ந்து குரல் கொடுத்து வருகிறேன். சமூகம் மற்றும் அரசியல் மாற்றத்தின் அவசியத்தை உணர்ந்து, இன்று நாம் தமிழர் கட்சியின் சார்பில் உங்கள் தொகுதி வேட்பாளராகக் களமிறங்கியுள்ளேன்.
+                                {t('home.candidate_desc')}
                             </p>
                             <a href="/about" className="btn-primary-custom px-5 py-3 text-decoration-none d-inline-block tamil-text">{t('common.read_full_bio')}</a>
                         </div>
@@ -136,7 +145,7 @@ const Home = () => {
                                 </div>
 
                                 {/* Floating Scale Icon */}
-                                <div className="position-absolute -top-4 -right-4 bg-primary text-white p-3 rounded-circle shadow-xl d-none d-md-flex">
+                                <div className="position-absolute -top-4 -right-4 bg-primary text-white p-3 rounded-circle shadow-xl d-none d-md-flex" aria-hidden="true">
                                     <Scale size={32} strokeWidth={1.5} />
                                 </div>
                             </motion.div>
@@ -166,16 +175,16 @@ const Home = () => {
 
                     <div className="row g-4 mt-2">
                         {[
-                            { title: t('vision.infra'), desc: 'Modernizing drainage and road connectivity.' },
-                            { title: t('vision.safety'), desc: '24/7 surveillance and community policing.' },
-                            { title: t('vision.youth'), desc: 'Skill development and tech hubs for local youth.' },
+                            { title: t('home.vision_card_infra'), desc: t('home.vision_card_infra_desc') },
+                            { title: t('home.vision_card_safety'), desc: t('home.vision_card_safety_desc') },
+                            { title: t('home.vision_card_youth'), desc: t('home.vision_card_youth_desc') },
                         ].map((item, i) => (
                             <div key={i} className="col-12 col-md-4">
                                 <div className="bg-white p-5 rounded-4 shadow-sm h-100 border-top border-4 border-secondary hover-y transition-300">
                                     <h3 className="h4 fw-bold text-primary mb-4 tamil-text">{item.title}</h3>
                                     <p className="text-muted mb-5 lh-relaxed">{item.desc}</p>
-                                    <a href="/vision" className="text-primary fw-bold text-decoration-none d-flex align-items-center gap-2 hover-gap transition-300 tamil-text">
-                                        {t('common.read_more')} <ArrowRight size={16} />
+                                    <a href="/vision" className="text-primary fw-bold text-decoration-none d-flex align-items-center gap-2 hover-gap transition-300 tamil-text" aria-label={`Read more about ${item.title}`}>
+                                        {t('common.read_more')} <ArrowRight size={16} aria-hidden="true" />
                                     </a>
                                 </div>
                             </div>
@@ -184,18 +193,82 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* Latest News Section */}
+            {news.length > 0 && (
+                <section className="py-5 bg-white">
+                    <div className="container py-5">
+                        <div className="d-flex justify-content-between align-items-end mb-5">
+                            <div>
+                                <h3 className="text-secondary fw-bold text-uppercase ls-widest mb-3 tamil-text">{t('home.latest_news')}</h3>
+                                <h2 className="display-5 fw-black text-primary mb-0 tamil-text">{t('home.news_events')}</h2>
+                            </div>
+                            <button onClick={() => navigate('/news')} className="btn btn-primary-custom px-4 d-none d-md-block">
+                                {t('common.view_more')}
+                            </button>
+                        </div>
+
+                        <div className="row g-4">
+                            {news.map((item, idx) => (
+                                <div key={item._id || item.id} className="col-12 col-md-4">
+                                    <motion.article
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: idx * 0.1 }}
+                                        className="card h-100 border-0 shadow-lg rounded-5 overflow-hidden transition-300 hover-y group"
+                                    >
+                                        <div className="position-relative overflow-hidden" style={{ aspectRatio: '16/9' }} onClick={() => navigate(`/news/${item._id || item.id}`)}>
+                                            <img
+                                                src={item.image}
+                                                alt={item.title}
+                                                className="w-100 h-100 object-fit-cover transition-700 group-hover-scale cursor-pointer"
+                                            />
+                                            <div className="position-absolute top-0 start-0 m-3 px-3 py-1 rounded-pill fw-bold small d-flex align-items-center gap-2 shadow-sm" style={{ backgroundColor: 'var(--secondary)', color: 'var(--primary)', fontSize: '11px' }}>
+                                                <Calendar size={14} aria-hidden="true" />
+                                                {new Date(item.date).toLocaleDateString()}
+                                            </div>
+                                        </div>
+
+                                        <div className="card-body p-4 d-flex flex-column h-100">
+                                            <h3 onClick={() => navigate(`/news/${item._id || item.id}`)} className="h5 fw-bold text-primary mb-3 transition-300 group-hover-text-secondary cursor-pointer" style={{ display: '-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                                                {item.title}
+                                            </h3>
+                                            <div className="mt-auto">
+                                                <button
+                                                    onClick={() => navigate(`/news/${item._id || item.id}`)}
+                                                    className="btn p-0 fw-bold text-primary d-flex align-items-center gap-2 border-0 hover-gap transition-300 small"
+                                                    aria-label={`Read more about ${item.title}`}
+                                                >
+                                                    {t('common.read_more')} <ArrowRight size={16} aria-hidden="true" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </motion.article>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="text-center mt-5 d-md-none">
+                            <button onClick={() => navigate('/news')} className="btn btn-primary-custom w-100">
+                                {t('common.view_more')}
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* CTA Section */}
             <section className="ntk-gradient py-5 text-center position-relative text-white overflow-hidden">
                 <div className="container py-5">
                     <div className="mx-auto" style={{ maxWidth: '800px' }}>
-                        <h2 className="display-4 fw-black tamil-text mb-4 lh-sm">இணைவோம் மாற்றத்திற்காக!</h2>
+                        <h2 className="display-4 fw-black tamil-text mb-4 lh-sm">{t('home.cta_title')}</h2>
                         <p className="fs-4 text-white fst-italic mb-5 opacity-75 tamil-text">{t('home.cta_subtitle')}</p>
-                        <div className="d-flex flex-wrap justify-center gap-4">
-                            <button className="px-5 py-3 rounded-pill fw-bold fs-5 btn-secondary-custom shadow-lg tamil-text">
-                                {t('common.volunteer')}
+                        <div className="d-flex flex-wrap justify-content-center gap-4">
+                            <button onClick={() => navigate('/donate')} className="px-5 py-3 rounded-pill fw-bold fs-5 btn btn-secondary-custom shadow-lg d-flex flex-column align-items-center">
+                                <span className="tamil-text">{t('common.voluntary_donation')}</span>
+                                <span className="small opacity-75 text-uppercase ls-wide" style={{ fontSize: '12px' }}>Voluntary Donation</span>
                             </button>
-                            <button className="px-5 py-3 rounded-pill fw-bold fs-5 btn btn-outline-light border-white border-2 opacity-75 hover-opacity-100 transition-300 tamil-text">
-                                {t('common.support_now')}
+                            <button onClick={() => navigate('/volunteer')} className="px-5 py-3 rounded-pill fw-bold fs-5 btn btn-outline-light border-white border-2 opacity-75 hover-opacity-100 transition-300 tamil-text">
+                                {t('common.volunteer')}
                             </button>
                         </div>
                     </div>

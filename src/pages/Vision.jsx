@@ -11,33 +11,33 @@ const Vision = () => {
     const visions = [
         {
             icon: <Leaf size={40} />,
-            title: 'மரபுவழி சுற்றுச்சூழல்',
-            desc: 'தி.நகரின் சுற்றுச்சூழலைப் பாதுகாக்கவும், கோயில்குளம் மற்றும் நீர்நிலைகளை மீட்டெடுத்து நிலத்தடி நீர்மட்டத்தை உயர்த்தவும் முன்னுரிமை அளிக்கப்படும்.'
+            title: t('vision.card_env_title'),
+            desc: t('vision.card_env_desc')
         },
         {
             icon: <Truck size={40} />,
-            title: 'மக்களரசு கட்டமைப்பு',
-            desc: 'நிர்வாகத்தில் வெளிப்படைத்தன்மையை உறுதி செய்ய அதிகாரப் பரவலாக்கல் மற்றும் மக்கள் பங்கேற்புடன் கூடிய சாலை மற்றும் வடிகால் திட்டங்கள் செயல்படுத்தப்படும்.'
+            title: t('vision.card_infra_title'),
+            desc: t('vision.card_infra_desc')
         },
         {
             icon: <Shield size={40} />,
-            title: 'மக்கள் பாதுகாப்பு',
-            desc: 'பெண் குழந்தைகள் மற்றும் முதியோரின் பாதுகாப்பை உறுதி செய்ய நவீன கண்காணிப்பு மற்றும் விரைவு நடவடிக்கை குழுக்கள் தொகுதி முழுவதும் அமைக்கப்படும்.'
+            title: t('vision.card_safety_title'),
+            desc: t('vision.card_safety_desc')
         },
         {
             icon: <ShoppingBag size={40} />,
-            title: 'சிறு வணிகர் காப்பு',
-            desc: 'பெருநிறுவனங்களின் ஆதிக்கத்திலிருந்து சிறு வணிகர்களைப் பாதுகாத்து, அவர்களுக்கான தனி விற்பனை மண்டலங்கள் மற்றும் எளிமையான உரிம முறைகள் உருவாக்கப்படும்.'
+            title: t('vision.card_traders_title'),
+            desc: t('vision.card_traders_desc')
         },
         {
             icon: <Briefcase size={40} />,
-            title: 'இளைஞர் திறன் மேம்பாடு',
-            desc: 'நமது தொகுதி இளைஞர்களுக்குத் தொழிற்சாலைகளில் முன்னுரிமை மற்றும் நவீன தொழில்நுட்பப் பயிற்சிகள் வழங்கி வேலைவாய்ப்புகள் உறுதி செய்யப்படும்.'
+            title: t('vision.card_youth_title'),
+            desc: t('vision.card_youth_desc')
         },
         {
             icon: <Droplets size={40} />,
-            title: 'தூய்மையான குடிநீர்',
-            desc: 'அனைத்து வீடுகளுக்கும் சுத்திகரிக்கப்பட்ட பாதுகாப்பான குடிநீர் எந்நேரமும் கிடைப்பது உறுதி செய்யப்படும்.'
+            title: t('vision.card_water_title'),
+            desc: t('vision.card_water_desc')
         }
     ];
 
@@ -56,13 +56,13 @@ const Vision = () => {
                         className="d-inline-block px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary fw-bold small text-uppercase ls-widest mb-4"
                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.1) !important', color: 'var(--secondary) !important' }}
                     >
-                        Our Roadmap
+                        {t('vision.badge')}
                     </motion.div>
                     <h1 className="display-4 fw-black text-white mb-4 tamil-text">
                         {t('vision.title')}
                     </h1>
                     <p className="fs-5 text-white-50 mx-auto tamil-text" style={{ maxWidth: '800px' }}>
-                        தி.நகர் தொகுதியைத் தற்சார்பு பொருளாதாரமும், பசுமைப் போர்வையும் கொண்ட முன்மாதிரி தொகுதியாக மாற்றுவதற்கான எமது செயல் திட்டம்.
+                        {t('vision.subtitle')}
                     </p>
                 </div>
             </section>
@@ -84,7 +84,7 @@ const Vision = () => {
                                         style={{ width: '120px', height: '120px', backgroundColor: 'var(--primary)', margin: '-20px' }}></div>
 
                                     <div className="position-relative z-1">
-                                        <div className="d-flex align-items-center justify-content-center rounded-4 mb-4 transition-500 bg-primary bg-opacity-10 text-primary group-hover-bg-primary group-hover-text-white" style={{ width: '80px', height: '80px' }}>
+                                        <div className="d-flex align-items-center justify-content-center rounded-4 mb-4 transition-500 bg-primary bg-opacity-10 text-primary group-hover-bg-primary group-hover-text-white" style={{ width: '80px', height: '80px' }} aria-hidden="true">
                                             {vision.icon}
                                         </div>
                                         <h3 className="h4 fw-bold text-primary mb-3 tamil-text">{vision.title}</h3>
@@ -106,17 +106,17 @@ const Vision = () => {
                 <div className="container position-relative z-1 py-5">
                     <div className="row g-5 align-items-center">
                         <div className="col-lg-7">
-                            <h2 className="display-5 fw-black tamil-text mb-4">மாற்றம் என்பது வெறும் சொல் அல்ல, அது எமது செயல்!</h2>
-                            <p className="fs-4 text-white-50 opacity-75 mb-5">We aim to transform T. Nagar into a destination where every citizen feels safe, empowered, and proud.</p>
+                            <h2 className="display-5 fw-black tamil-text mb-4">{t('vision.feature_title')}</h2>
+                            <p className="fs-4 opacity-75 mb-5 tamil-text">{t('vision.feature_desc')}</p>
                             <ul className="list-unstyled d-flex flex-column gap-3">
                                 {[
-                                    'Priority for local residents in constituency developments.',
-                                    'Transparent fund allocation and open audit.',
-                                    'Community participation in every major decision.'
+                                    t('vision.feature_list_1'),
+                                    t('vision.feature_list_2'),
+                                    t('vision.feature_list_3')
                                 ].map((item, i) => (
                                     <li key={i} className="d-flex align-items-center gap-3 fs-5">
                                         <CheckCircle className="text-secondary flex-shrink-0" />
-                                        <span>{item}</span>
+                                        <span className="tamil-text">{item}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -129,14 +129,14 @@ const Vision = () => {
                                         <Users size={40} />
                                     </div>
                                     <div>
-                                        <h4 className="fw-bold fs-3 mb-0">Constituency Council</h4>
-                                        <p className="text-secondary small fw-bold mb-0">Direct Citizen Engagement</p>
+                                        <h4 className="fw-bold fs-3 mb-0 tamil-text">{t('vision.assembly_title')}</h4>
+                                        <p className="text-secondary small fw-bold mb-0 tamil-text">{t('vision.assembly_subtitle')}</p>
                                     </div>
                                 </div>
-                                <p className="text-white text-opacity-75 lh-relaxed mb-5">
-                                    We will establish a monthly "Constituency Council" where residents can directly voice their concerns and vote on priority projects for their specific streets and blocks.
+                                <p className="text-white text-opacity-75 lh-relaxed mb-5 tamil-text">
+                                    {t('vision.assembly_desc')}
                                 </p>
-                                <button className="btn-secondary-custom w-100 py-3">Learn How it Works</button>
+                                <button className="btn-secondary-custom w-100 py-3 tamil-text">{t('vision.assembly_btn')}</button>
                             </div>
                         </div>
                     </div>

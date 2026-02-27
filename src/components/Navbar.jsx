@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Globe, Facebook, Instagram, Twitter, Youtube, Search, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, Facebook, Instagram, Twitter, AtSign, Search, ChevronDown } from 'lucide-react';
 import logo from '../assets/advocate-anusha-logo.png';
 
 const Navbar = () => {
@@ -44,7 +44,14 @@ const Navbar = () => {
         },
         { name: t('nav.gallery'), path: '/gallery' },
         { name: t('nav.news'), path: '/news' },
-        { name: t('nav.contact'), path: '/contact' },
+        {
+            name: t('nav.contact'),
+            path: '#',
+            subItems: [
+                { name: t('nav.contact'), path: '/contact' },
+                { name: t('common.volunteer'), path: '/volunteer' }
+            ]
+        },
     ];
 
     return (
@@ -58,10 +65,10 @@ const Navbar = () => {
                         <span className="tamil-text">புதியதொரு தேசம் செய்வோம்!</span>
                     </div>
                     <div className="d-flex gap-3 align-items-center">
-                        <Facebook size={14} />
-                        <Instagram size={14} />
-                        <Twitter size={14} />
-                        <Youtube size={14} />
+                        <a href="https://www.facebook.com/p/Advocate-Anusha-100075840927478/" target="_blank" rel="noopener noreferrer" className="text-white opacity-75 hover-opacity-100 transition-all"><Facebook size={14} /></a>
+                        <a href="https://www.instagram.com/advanusha/?hl=en" target="_blank" rel="noopener noreferrer" className="text-white opacity-75 hover-opacity-100 transition-all"><Instagram size={14} /></a>
+                        <a href="https://x.com/anushaadvocate" target="_blank" rel="noopener noreferrer" className="text-white opacity-75 hover-opacity-100 transition-all"><Twitter size={14} /></a>
+                        <a href="https://www.threads.com/@advanusha" target="_blank" rel="noopener noreferrer" className="text-white opacity-75 hover-opacity-100 transition-all"><AtSign size={14} /></a>
                     </div>
                 </div>
             </div>
@@ -85,14 +92,18 @@ const Navbar = () => {
                         <button
                             onClick={toggleLanguage}
                             className="btn btn-sm fw-bold border border-white text-white"
+                            aria-label={`Switch language to ${i18n.language === 'ta' ? 'English' : 'Tamil'}`}
                         >
                             {i18n.language === 'ta' ? 'EN' : 'தமிழ்'}
                         </button>
                         <button
                             className="btn p-0 border-0 text-white"
                             onClick={() => setIsOpen(!isOpen)}
+                            aria-label={isOpen ? "Close menu" : "Open menu"}
+                            aria-expanded={isOpen}
+                            aria-controls="mobile-menu"
                         >
-                            {isOpen ? <X size={28} /> : <Menu size={28} />}
+                            {isOpen ? <X size={28} aria-hidden="true" /> : <Menu size={28} aria-hidden="true" />}
                         </button>
                     </div>
 
@@ -106,13 +117,13 @@ const Navbar = () => {
                                             <a
                                                 className="nav-link tamil-text dropdown-toggle d-flex align-items-center gap-1"
                                                 href="#"
-                                                id={`navbarDropdown${link.name}`}
+                                                id={`navbarDropdown${link.name.replace(/\s+/g, '')}`}
                                                 role="button"
                                                 data-bs-toggle="dropdown"
                                                 aria-expanded="false"
                                             >
                                                 {link.name}
-                                                <ChevronDown size={14} />
+                                                <ChevronDown size={14} aria-hidden="true" />
                                             </a>
                                             <ul className="dropdown-menu border-0 shadow-lg p-2" aria-labelledby={`navbarDropdown${link.name}`}>
                                                 {link.subItems.map((sub) => (
@@ -139,13 +150,15 @@ const Navbar = () => {
 
                     {/* Nav Buttons */}
                     <div className="d-none d-lg-flex align-items-center gap-2">
-                        <button className="btn btn-warning fw-bold px-3 py-2 rounded-3 text-dark small tamil-text">உறுப்பினராக</button>
+                        <Link to="/donate" className="btn btn-warning fw-bold px-3 py-2 rounded-3 text-dark small tamil-text">
+                            {t('common.donate')}
+                        </Link>
                         <button
                             onClick={toggleLanguage}
                             className="btn btn-outline-light rounded-circle p-2 ms-1"
-                            title="Change Language"
+                            aria-label={`Switch language to ${i18n.language === 'ta' ? 'English' : 'Tamil'}`}
                         >
-                            <Globe size={18} />
+                            <Globe size={18} aria-hidden="true" />
                         </button>
                     </div>
                 </div>
@@ -153,12 +166,20 @@ const Navbar = () => {
 
             {/* Mobile Menu Overlay */}
             <div
+                id="mobile-menu"
                 className={`fixed-top w-100 h-100 bg-white d-lg-none transition-all ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
                     } flex-column align-items-center py-5 overflow-y-auto z-3`}
                 style={{ zIndex: 1050, transition: 'all 0.4s ease-in-out' }}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Mobile navigation"
             >
-                <button onClick={() => setIsOpen(false)} className="position-absolute top-0 end-0 m-4 btn">
-                    <X size={32} className="text-primary" />
+                <button
+                    onClick={() => setIsOpen(false)}
+                    className="position-absolute top-0 end-0 m-4 btn"
+                    aria-label="Close menu"
+                >
+                    <X size={32} className="text-primary" aria-hidden="true" />
                 </button>
 
                 <div className="d-flex flex-column align-items-center gap-4 w-100 mt-5 px-4">
@@ -210,7 +231,14 @@ const Navbar = () => {
                         </div>
                     ))}
 
-                    <div className="mt-4 w-100 px-4">
+                    <div className="mt-4 w-100 px-4 d-flex flex-column gap-3">
+                        <Link
+                            to="/donate"
+                            onClick={() => setIsOpen(false)}
+                            className="btn btn-warning fw-bold py-3 rounded-pill fs-5 tamil-text text-decoration-none"
+                        >
+                            {t('common.donate')}
+                        </Link>
                         <button
                             onClick={() => {
                                 toggleLanguage();

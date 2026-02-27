@@ -1,27 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Maximize2 } from 'lucide-react';
 import Layout from '../components/Layout';
 import galleryData from '../data/gallery.json';
+import bannerImg from '../assets/common-banner.png';
 
 const Gallery = () => {
     const { t } = useTranslation();
+    const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
     const [filter, setFilter] = useState('All');
 
-    const categories = ['All', ...new Set(galleryData.map(item => item.category))];
+    useEffect(() => {
+        fetch('http://localhost:5000/api/gallery')
+            .then(res => res.json())
+            .then(data => setImages(data))
+            .catch(err => console.error('Error fetching gallery:', err));
+    }, []);
+
+    const categories = ['All', ...new Set(images.map(item => item.category))];
 
     const filteredImages = filter === 'All'
-        ? galleryData
-        : galleryData.filter(img => img.category === filter);
+        ? images
+        : images.filter(img => img.category === filter);
 
     return (
         <Layout>
-            <section className="bg-light pt-5 pb-5">
-                <div className="container pt-5 mt-5 text-center">
-                    <h1 className="display-4 fw-black text-primary mb-5 tamil-text">{t('nav.gallery')}</h1>
+            <section
+                className="parallax-section pt-5 pb-5 text-white"
+                style={{ backgroundImage: `url(${bannerImg})`, minHeight: '400px', display: 'flex', alignItems: 'center' }}
+            >
+                <div className="parallax-overlay"></div>
+                <div className="container pt-5 mt-5 position-relative z-2 text-center">
+                    <h1 className="display-4 fw-black text-white mb-4 tamil-text">{t('nav.gallery')}</h1>
+                    <p className="fs-5 text-white-50 mx-auto tamil-text" style={{ maxWidth: '800px' }}>
+                        நமது கட்சியின் களப்பணிகள் மற்றும் முக்கிய நிகழ்வுகளின் புகைப்படத் தொகுப்பு.
+                    </p>
+                </div>
+            </section>
 
+            <section className="bg-light py-5">
+                <div className="container">
                     {/* Filters */}
                     <div className="d-flex flex-wrap justify-center gap-3 mb-5 mt-2 overflow-auto pb-2 justify-content-center">
                         {categories.map(cat => (
@@ -29,8 +49,8 @@ const Gallery = () => {
                                 key={cat}
                                 onClick={() => setFilter(cat)}
                                 className={`btn rounded-pill px-4 fw-bold transition-all shadow-sm ${filter === cat
-                                        ? 'btn-primary-custom'
-                                        : 'bg-white text-muted hover-bg-light border'
+                                    ? 'btn-primary-custom'
+                                    : 'bg-white text-muted hover-bg-light border'
                                     }`}
                             >
                                 {cat}
@@ -43,7 +63,7 @@ const Gallery = () => {
                     <div className="row g-4 pt-2">
                         <AnimatePresence mode='popLayout'>
                             {filteredImages.map((img) => (
-                                <div key={img.id} className="col-12 col-md-6 col-lg-4">
+                                <div key={img._id || img.id} className="col-12 col-md-6 col-lg-4">
                                     <motion.div
                                         layout
                                         initial={{ opacity: 0, scale: 0.9 }}
@@ -58,8 +78,8 @@ const Gallery = () => {
                                             className="w-100 h-100 object-fit-cover transition-700 group-hover-scale"
                                             style={{ aspectRatio: '1/1' }}
                                         />
-                                        <div className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center p-4 text-center text-white opacity-0 transition-300 group-hover-opacity" style={{ backgroundColor: 'rgba(15, 81, 50, 0.7)' }}>
-                                            <Maximize2 className="text-secondary mb-3" size={40} />
+                                        <div className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center p-4 text-center text-white opacity-0 transition-300 group-hover-opacity" style={{ backgroundColor: 'rgba(15, 81, 50, 0.7)' }} role="button" tabIndex="0" aria-label={`View ${img.title}`}>
+                                            <Maximize2 className="text-secondary mb-3" size={40} aria-hidden="true" />
                                             <h3 className="h4 fw-bold mb-1">{img.title}</h3>
                                             <p className="small fw-bold text-secondary text-uppercase ls-widest mb-0">{img.category}</p>
                                         </div>
@@ -82,8 +102,11 @@ const Gallery = () => {
                         style={{ backgroundColor: 'rgba(0,0,0,0.95)', zIndex: 1100 }}
                         onClick={() => setSelectedImage(null)}
                     >
-                        <button className="position-absolute top-0 end-0 m-5 btn text-white hover-text-secondary border-0">
-                            <X size={48} />
+                        <button
+                            className="position-absolute top-0 end-0 m-5 btn text-white hover-text-secondary border-0"
+                            aria-label="Close gallery"
+                        >
+                            <X size={48} aria-hidden="true" />
                         </button>
                         <motion.div
                             initial={{ scale: 0.9, y: 50 }}

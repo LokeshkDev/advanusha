@@ -7,7 +7,10 @@ import Vision from './pages/Vision';
 import Manifesto from './pages/Manifesto';
 import Gallery from './pages/Gallery';
 import News from './pages/News';
+import NewsDetail from './pages/NewsDetail';
 import Contact from './pages/Contact';
+import Volunteer from './pages/Volunteer';
+import Donate from './pages/Donate';
 import Login from './pages/Admin/Login';
 import Dashboard from './pages/Admin/Dashboard';
 import NotFound from './pages/NotFound';
@@ -45,7 +48,10 @@ function App() {
         <Route path="/manifesto" element={<Manifesto />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/news" element={<News />} />
+        <Route path="/news/:id" element={<NewsDetail />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/volunteer" element={<Volunteer />} />
+        <Route path="/donate" element={<Donate />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Login />} />

@@ -10,39 +10,39 @@ const Manifesto = () => {
 
     const categories = [
         {
-            title: "அதிகாரப்பரவல் & நிர்வாகம்",
+            title: t('manifesto.cat1_title'),
             items: [
-                "தொகுதி மேம்பாட்டு நிதியில் முழுமையான வெளிப்படைத்தன்மை.",
-                "மாதம்தோறும் மக்கள் சபை கூட்டி குறைகளைக் கேட்டறிதல்.",
-                "அரசுப் பணிகளில் முறைகேடுகளைத் தவிர்க்க டிஜிட்டல் கண்காணிப்பு.",
-                "24/7 அவசர உதவி மையங்கள் அமைத்தல்."
+                t('manifesto.cat1_item1'),
+                t('manifesto.cat1_item2'),
+                t('manifesto.cat1_item3'),
+                t('manifesto.cat1_item4')
             ]
         },
         {
-            title: "மருத்துவம் & மக்கள் நலம்",
+            title: t('manifesto.cat2_title'),
             items: [
-                "நவீன வசதிகளுடன் கூடிய அரசு ஆரம்ப சுகாதார நிலையங்கள்.",
-                "முதியோருக்கான நடமாடும் மருத்துவ வாகனச் சேவை.",
-                "தொகுதி முழுவதும் தூய்மையான சுற்றுச்சூழல் மற்றும் டெங்கு தடுப்பு நடவடிக்கைகள்.",
-                "நலிவடைந்த குடும்பங்களுக்கு அரசு நலத்திட்டங்கள் நேரடியாகச் சென்றடைய உறுதி செய்தல்."
+                t('manifesto.cat2_item1'),
+                t('manifesto.cat2_item2'),
+                t('manifesto.cat2_item3'),
+                t('manifesto.cat2_item4')
             ]
         },
         {
-            title: "கல்வி & வேலைவாய்ப்பு",
+            title: t('manifesto.cat3_title'),
             items: [
-                "அரசுப் பள்ளிகளை மின்னணு வகுப்பறைகளுடன் தரம் உயர்த்துதல்.",
-                "போட்டித் தேர்வுகளுக்கான (TNPSC, UPSC) இலவசப் பயிற்சி மையங்கள்.",
-                "உள்ளூர் இளைஞர்களுக்குத் தி.நகர் வணிக நிறுவனங்களில் வேலைவாய்ப்பு முன்னுரிமை.",
-                "தையல் மற்றும் சிறுதொழில் முனைவோருக்குக் கடனுதவி மற்றும் சந்தைப்படுத்துதல்."
+                t('manifesto.cat3_item1'),
+                t('manifesto.cat3_item2'),
+                t('manifesto.cat3_item3'),
+                t('manifesto.cat3_item4')
             ]
         },
         {
-            title: "மண் & மக்கள் வளம்",
+            title: t('manifesto.cat4_title'),
             items: [
-                "நீர்நிலை ஆக்கிரமிப்புகளை அகற்றி தி.நகர் வெள்ளப் பாதிப்பில்லா மண்டலமாக மாற்றுதல்.",
-                "திடக்கழிவு மேலாண்மையில் நவீன தொழில்நுட்பம் மற்றும் மக்கும் குப்பை உரம் தயாரிப்பு.",
-                "நெகிழி இல்லா தி.நகரை உருவாக்கிப் பசுமைப் போர்வையை அதிகரித்தல்.",
-                "பாரம்பரிய தமிழர் கலைகள் மற்றும் பண்பாட்டு நிகழ்வுகளுக்கான அரங்கம்."
+                t('manifesto.cat4_item1'),
+                t('manifesto.cat4_item2'),
+                t('manifesto.cat4_item3'),
+                t('manifesto.cat4_item4')
             ]
         }
     ];
@@ -66,7 +66,7 @@ const Manifesto = () => {
                                 {t('nav.manifesto')}
                             </motion.h1>
                             <p className="fs-4 text-white-50 opacity-75 tamil-text">
-                                தி.நகர் மக்களுக்கான எமது தேர்தல் வாக்குறுதிகள். புதியதொரு தேசம் செய்வோம்!
+                                {t('manifesto.banner_subtitle')}
                             </p>
                         </div>
                         <div className="col-lg-4 text-lg-end">
@@ -115,9 +115,9 @@ const Manifesto = () => {
 
                     <div className="ntk-gradient rounded-5 p-5 mt-5 text-white text-center shadow-lg position-relative overflow-hidden">
                         <div className="position-relative z-1 py-4">
-                            <h2 className="display-5 fw-bold mb-4 tamil-text">மாற்றம் எம்மால் நிச்சயம்!</h2>
-                            <p className="fs-5 text-white-50 opacity-75 mx-auto mb-5" style={{ maxWidth: '700px' }}>We believe in accountability. This manifesto is not a mere paper but a social contract between us and you.</p>
-                            <button className="btn-secondary-custom px-5 py-3">I Support This Vision</button>
+                            <h2 className="display-5 fw-bold mb-4 tamil-text">{t('manifesto.cta_title')}</h2>
+                            <p className="fs-5 text-white-50 opacity-75 mx-auto mb-5" style={{ maxWidth: '700px' }}>{t('manifesto.cta_desc')}</p>
+                            <button className="btn-secondary-custom px-5 py-3">{t('common.i_support')}</button>
                         </div>
                     </div>
                 </div>
