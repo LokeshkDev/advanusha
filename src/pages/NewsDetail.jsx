@@ -13,7 +13,7 @@ const NewsDetail = () => {
     const [article, setArticle] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/news/${id}`)
+        fetch(`https://advanusha.in/api/news/${id}`)
             .then(res => res.json())
             .then(data => {
                 if (data && !data.message) {
