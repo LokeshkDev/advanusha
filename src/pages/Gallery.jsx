@@ -13,7 +13,7 @@ const Gallery = () => {
     const [filter, setFilter] = useState('All');
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/gallery')
+        fetch('https://advanusha.in/api/gallery')
             .then(res => res.json())
             .then(data => setImages(data))
             .catch(err => console.error('Error fetching gallery:', err));
