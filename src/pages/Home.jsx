@@ -14,7 +14,7 @@ const Home = () => {
     const [news, setNews] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/news')
+        fetch('https://advanusha.in/api/news')
             .then(res => res.json())
             .then(data => setNews(data.slice(0, 3)))
             .catch(err => console.error('Error fetching news:', err));
